@@ -40,7 +40,7 @@ const SignupPage = () => {
       </div>
 
       {/* Signup Card - Bottom Left */}
-      <div className="absolute bottom-8 left-8 z-10 max-w-md w-full bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-8 md:p-10">
+      <div className="absolute bottom-8 left-8 z-10 max-w-xl w-full bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-8 md:p-10">
         <div className="mb-6 text-center">
           <h1 className="text-3xl font-extrabold text-gray-800">Create Account</h1>
           <p className="text-sm text-gray-500 mt-1">Join us to get started</p>

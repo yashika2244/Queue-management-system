@@ -16,7 +16,7 @@ const LoginPage = () => {
     setLoading(true);
     const success = await login(formData);
     setLoading(false);
-    if (success) navigate("/dashboard");
+    if (success)  navigate('/join');
   };
 
   return (
@@ -31,7 +31,7 @@ const LoginPage = () => {
       </div>
 
       {/* Login Card */}
-      <div className="absolute bottom-8 left-8 z-10 max-w-md w-full bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-8 md:p-10">
+      <div className="absolute bottom-8 left-8 z-10 max-w-xl w-full bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-8 md:p-10">
         <div className="mb-6 text-center">
           <h1 className="text-3xl font-extrabold text-gray-800">Welcome Back</h1>
           <p className="text-sm text-gray-500 mt-1">Please log in to continue</p>
@@ -70,7 +70,6 @@ const LoginPage = () => {
             />
             <div className="text-right mt-2">
               <span
-                onClick={() => navigate("/forgot-password")}
                 className="text-sm text-blue-600 hover:underline cursor-pointer"
               >
                 Forgot Password?

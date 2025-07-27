@@ -1,15 +1,16 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
+
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
 
-const baseUrl = import.meta.env.VITE_API_BASE_URL; 
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
-  // Auto login if token exists
+  // Auto login
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -22,26 +23,27 @@ const baseUrl = import.meta.env.VITE_API_BASE_URL;
         .then((data) => {
           if (data?.user) {
             setUser(data.user);
+            toast.success("Auto login successful");
           } else {
             localStorage.removeItem("token");
             setUser(null);
+            toast.error("Session expired. Please login again.");
           }
         })
         .catch(() => {
           setUser(null);
           localStorage.removeItem("token");
+          toast.error("Failed to authenticate user");
         });
     }
   }, []);
 
-  // Login Function
 const login = async (formData) => {
   try {
     const payload = {
       password: formData.password,
     };
 
-    // if it's an email or mobile (basic check)
     if (/^\d{10}$/.test(formData.identifier)) {
       payload.mobile = formData.identifier;
     } else {
@@ -59,18 +61,22 @@ const login = async (formData) => {
     const data = await res.json();
 
     if (res.ok) {
+      console.log("User object from login:", data.user);
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.user._id);
       setUser(data.user);
-      navigate("/queue");
+      toast.success("Login successful");
+      return true; // ✅ RETURN success
     } else {
-      alert(data.message || "Login failed");
+      toast.error(data.message || "Login failed");
+      return false; // ❌ RETURN failure
     }
   } catch (err) {
     console.error("Login error:", err);
+    toast.error("Something went wrong during login");
+    return false; // ❌ RETURN failure
   }
 };
-
-  // Signup Function
   const signup = async (formData) => {
     try {
       const res = await fetch(`${baseUrl}/api/users/register`, {
@@ -84,20 +90,23 @@ const login = async (formData) => {
       const data = await res.json();
 
       if (res.ok) {
-        navigate("/login");
+        toast.success("Signup successful! Please login.");
+        return true;
       } else {
-        alert(data.message || "Signup failed");
+        toast.error(data.message || "Signup failed");
+        return false;
       }
     } catch (err) {
       console.error("Signup error:", err);
+      toast.error("Something went wrong during signup");
+      return false;
     }
   };
 
-  // Logout
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
-    navigate("/login");
+    toast.success("Logged out successfully");
   };
 
   return (
