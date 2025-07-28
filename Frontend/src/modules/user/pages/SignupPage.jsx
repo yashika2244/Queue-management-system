@@ -24,7 +24,7 @@ const SignupPage = () => {
     e.preventDefault();
     const success = await signup(formData);
     if (success) {
-      navigate("/dashboard");
+      navigate("/login");
     }
   };
 
@@ -33,7 +33,7 @@ const SignupPage = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/login-bg.jpg"
+          src="/bgImage.jpg"
           alt="background"
           className="w-full h-full object-cover"
         />

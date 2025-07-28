@@ -24,14 +24,14 @@ const LoginPage = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/login-bg.jpg"
+          src="/bgImage.jpg"
           alt="background design"
           className="w-full h-full object-cover"
         />
       </div>
 
       {/* Login Card */}
-      <div className="absolute bottom-8 left-8 z-10 max-w-xl w-full bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-8 md:p-10">
+      <div className="absolute bottom-8 left-8 z-10 max-w-lg w-full bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-8 md:p-10">
         <div className="mb-6 text-center">
           <h1 className="text-3xl font-extrabold text-gray-800">Welcome Back</h1>
           <p className="text-sm text-gray-500 mt-1">Please log in to continue</p>
