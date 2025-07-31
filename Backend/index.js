@@ -1,11 +1,15 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
+console.log("Testing .env JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
+import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
-import userRoutes from "./routes/userRoutes.js";
 import queueRouter from "./routes/queueRoutes.js";
+import visitorRoute from "./routes/visitorRoutes.js";
+import clerkRoute from "./routes/clerkRoutes.js";
+import authRoute from "./routes/userRoutes.js";
 
-dotenv.config();
+
 const app = express();
 
 // Middleware
@@ -16,9 +20,10 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
-app.use("/api/users", userRoutes);
+app.use('/api/auth',authRoute)
 app.use('/api/token',queueRouter)
-
+app.use("/api/visitors", visitorRoute);
+app.use("/api/clerks", clerkRoute);
 // DB Connect & Start Server
 connectDB().then(() => {
   app.listen(process.env.PORT, () => {
