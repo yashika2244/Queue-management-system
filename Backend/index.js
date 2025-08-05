@@ -8,6 +8,7 @@ import queueRouter from "./routes/queueRoutes.js";
 import visitorRoute from "./routes/visitorRoutes.js";
 import clerkRoute from "./routes/clerkRoutes.js";
 import authRoute from "./routes/userRoutes.js";
+import setupRouter from "./routes/setupRoutes.js";
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/api/auth',authRoute)
 app.use('/api/token',queueRouter)
 app.use("/api/visitors", visitorRoute);
 app.use("/api/clerks", clerkRoute);
+app.use('/api/setup',setupRouter)
 // DB Connect & Start Server
 connectDB().then(() => {
   app.listen(process.env.PORT, () => {
