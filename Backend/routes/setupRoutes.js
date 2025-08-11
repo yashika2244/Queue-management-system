@@ -1,6 +1,6 @@
 import express from "express";
 import {  getSetupData, saveSetupData } from "../controllers/setupController.js";
-import verifyToken from "../middleware/authMiddleware.js";
+import { verifyToken } from "../middleware/authMiddleware.js";
 const setupRouter = express.Router();
 
 setupRouter.post("/",verifyToken, saveSetupData);
