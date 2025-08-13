@@ -1,37 +1,4 @@
-// // import express from "express";
-// // import { callNext, cancelTicket, checkIn, getQueue, serveTicket } from "../controllers/queueCOntroller.js";
 
-// // const queueRoutes = express.Router();
-
-// // queueRoutes.post("/checkin", checkIn);        // Customer check-in
-// // queueRoutes.get("/", getQueue);               // Get live queue
-// // queueRoutes.post("/next", callNext);          // Call next customer
-// // queueRoutes.post("/serve/:ticketId", serveTicket); // Mark served
-// // queueRoutes.post("/cancel/:ticketId", cancelTicket); // Cancel ticket
-
-// // export default queueRoutes;
-
-// import express from "express";
-// import { 
-//   callNext, 
-//   cancelTicket, 
-//   checkIn, 
-//   getQueue, 
-//   serveTicket, 
-//   createQueue 
-// } from "../controllers/queueController.js";
-// import { verifyToken ,adminOnly} from "../middleware/authMiddleware.js";
-
-// const queueRoutes = express.Router();
-
-// queueRoutes.post("/create", verifyToken, adminOnly, createQueue); // ✅ Admin: Create queue
-// queueRoutes.post("/checkin", checkIn);                            // Customer check-in
-// queueRoutes.get("/", verifyToken, getQueue);                      // Get live queue (Staff/Admin)
-// queueRoutes.post("/next", verifyToken, callNext);                 // Staff: Call next customer
-// queueRoutes.post("/serve/:ticketId", verifyToken, serveTicket);   // Staff: Mark served
-// queueRoutes.post("/cancel/:ticketId", verifyToken, cancelTicket); // Staff: Cancel ticket
-
-// export default queueRoutes;
 
 
 import express from "express";
@@ -41,11 +8,14 @@ import {
   getQueue, 
   callNext, 
   serveTicket, 
-  cancelTicket 
+  cancelTicket, 
+  markVisiting
 } from "../controllers/queueController.js";
 import { adminOnly, verifyToken } from "../middleware/authMiddleware.js";
 
 const queueRoutes = express.Router();
+// Staff marks ticket as visiting
+queueRoutes.post("/visit/:queueId/:ticketNumber", verifyToken, markVisiting);
 
 //  Admin creates new queue
 // queueRoutes.post("/create", verifyToken, adminOnly, createQueue);

@@ -13,44 +13,18 @@ const Navbar = () => {
   };
 
   return (
-    <header className="w-full bg-white shadow-sm border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          
-          {/* Logo */}
-          <h1
-            onClick={() => navigate("/")}
-            className="text-2xl font-bold text-cyan-800 tracking-wide cursor-pointer hover:text-cyan-600 hover:bg-cyan-50 px-3 py-1 rounded-lg transition"
-          >
-            QueuePilot
-          </h1>
+    <header className="w-full bg-cyan-800 border-b border-gray-200 fixed top-0 left-0 z-40">
+  <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center md:h-10 h-14">
+    {/* Logo */}
+    <h1
+      onClick={() => navigate("/")}
+      className="text-2xl font-bold text-cyan-500 tracking-wide cursor-pointer px-8 py-1  rounded-sm transition"
+    >
+      QueuePilot
+    </h1>
+  </div>
+</header>
 
-          {/* Auth Section */}
-          {auth ? (
-            <div className="flex items-center gap-4">
-              <span className="hidden sm:block text-gray-600 font-medium">
-                Welcome, <span className="text-gray-900">{auth.name}</span>
-              </span>
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full shadow-sm transition"
-              >
-                <LogOut size={18} />
-                <span className="hidden sm:block">Logout</span>
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={() => navigate("/login")}
-              className="flex items-center gap-2 bg-cyan-700 hover:bg-cyan-800 text-white px-4 py-2 rounded-full shadow-sm transition"
-            >
-              <LogIn size={18} />
-              <span className="hidden sm:block">Login</span>
-            </button>
-          )}
-        </div>
-      </div>
-    </header>
   );
 };
 

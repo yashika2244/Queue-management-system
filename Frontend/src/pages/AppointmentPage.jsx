@@ -2,7 +2,8 @@
 import React from "react";
 import Sidebar from "../components/common/Sidebar";
 import Navbar from "../components/common/Header";
-import AppointmentList from "../components/appointment/AppointmentList";
+// import AppointmentList from "../components/appointment/AppointmentList";
+import EmptyAppointments from "../components/appointment/EmptyAppointments";
 
 const AppointmentPage = () => {
   return (
@@ -10,7 +11,9 @@ const AppointmentPage = () => {
       <Sidebar/>
       <div className="flex-1">
         <Navbar/>
-        <AppointmentList/>
+        {/* <AppointmentList/>
+         */}
+         <EmptyAppointments/>
       </div>
     </div>
   );

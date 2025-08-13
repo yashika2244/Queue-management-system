@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+// import { AuthContext, useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const WelcomeScreen = () => {
-  const { user } = useContext(AuthContext);
+const WelcomePage = () => {
+  // const { user } = useAuth()
   const navigate = useNavigate()
-  const username = user?.firstName || "there";
+  // const username = user?.firstName || "there";
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50 px-4">
       <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl p-10 space-y-8">
@@ -23,7 +23,7 @@ const WelcomeScreen = () => {
         {/* Welcome Text */}
         <div className="text-center">
           <h2 className="text-3xl font-semibold text-gray-800">
-            Hello, {username}! 👋
+            Hello, y! 👋
           </h2>
           <p className="mt-2 text-gray-600 max-w-md mx-auto">
             Let’s begin optimizing your service experience with smarter queue handling and faster interactions.
@@ -63,4 +63,4 @@ const WelcomeScreen = () => {
   );
 };
 
-export default WelcomeScreen;
+export default WelcomePage;

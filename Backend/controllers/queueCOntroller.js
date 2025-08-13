@@ -273,3 +273,20 @@ export const cancelTicket = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+export const markVisiting = async (req, res) => {
+  const { queueId, ticketNumber } = req.params;
+  const queue = await Queue.findById(queueId);
+  const ticket = queue.tickets.find(t => t.number === ticketNumber);
+
+  if (!ticket) return res.status(404).json({ message: "Ticket not found" });
+
+  ticket.status = "visiting";
+  ticket.startServiceTime = new Date();
+  await queue.save();
+
+  // Socket emit: visitor status changed
+  req.io.emit("queue-updated", queue);
+
+  res.json({ message: "Ticket marked as visiting", queue });
+};
